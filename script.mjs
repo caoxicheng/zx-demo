@@ -1,7 +1,18 @@
-#!/usr/bin/env zx
+#!/usr/bin/env node
+import { $ } from 'zx';
 
-import {echo} from 'zx/experimental'
+const keypress = async () => {
+    process.stdin.setRawMode(true);
+    return new Promise((resolve) =>
+        process.stdin.once('data', () => {
+            process.stdin.setRawMode(false);
+            resolve();
+        })
+    );
+};
+console.log('current data:');
+await $`date`;
 
-let branch = await $`git branch --show-current`
-
-echo`Current branch is ${branch}.`
+console.log('program ended, press any key to continue');
+await keypress();
+process.exit(0);
