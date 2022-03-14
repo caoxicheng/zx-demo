@@ -1,4 +1,5 @@
-#!/usr/bin/env zx
+#!/usr/bin/env node
+import { $ } from 'zx';
 
 const keypress = async () => {
     process.stdin.setRawMode(true);
